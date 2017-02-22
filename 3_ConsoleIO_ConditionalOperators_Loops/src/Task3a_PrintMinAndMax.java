@@ -10,7 +10,7 @@ public class Task3a_PrintMinAndMax {
         int maxValue = 0;
         for (int i = 0; i < num; i++) {
             int newNum = sc.nextInt();
-            if (num == 1) {
+            if (i == 0) {
                 minValue = newNum;
                 maxValue = newNum;
             } else {

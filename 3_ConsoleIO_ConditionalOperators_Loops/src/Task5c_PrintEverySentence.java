@@ -13,7 +13,6 @@ public class Task5c_PrintEverySentence {
                 output += arr1[i];
                 System.out.println(output);
                 output = "";
-                continue;
             } else if (arr1[i] == ' ' && output == "") {
                 //This scenarios is when first sentence is printed and there is a space after that.
                 continue;

@@ -4,15 +4,14 @@ public class Task3c_PrintOnlyEvenNumbers {
         Scanner sc = new Scanner(System.in);
         int numbers = sc.nextInt();
         String evenNumbers="";
-        while(numbers>0)
+        for(int i=0;i<numbers;i++)
         {
             int value = sc.nextInt();
             if(value%2==0)
             {
                 evenNumbers+=value+" ";
             }
-            numbers--;
         }
-            System.out.println(evenNumbers);
+        System.out.println(evenNumbers);
     }
 }

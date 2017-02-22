@@ -8,23 +8,21 @@ public class Task4a_PrintSquare {
         int number = sc.nextInt();
 
         for (int i = 0; i < number; i++) {
-            String printSquare = "";
-            if (i == 0 || i == number - 1) {
-                //Assume it is first or last loop so we need to print whole row with *;
-                for (int n = 0; n < number; n++) {
-                    printSquare += '*';
-                }
-            } else {
-                //Assume it is not first or last loop so we need to print first and last * only;
-                for (int l = 0; l < number; l++) {
-                    if (l == 0 || l == number - 1) {
-                        printSquare += '*';
-                    } else {
-                        printSquare += ' ';
-                    }
-                }
-            }
-            System.out.println(printSquare);
+            System.out.print("* ");
         }
+        System.out.println();
+        for(int i = 1; i < number - 1 ; i++) {
+            System.out.print("* ");
+            
+            for(int j = 1; j < number - 1 ; j++) {
+                System.out.print("  ");
+            }
+
+            System.out.println("* ");
+        }
+        for (int i = 0; i < number; i++) {
+            System.out.print("* ");
+        }
+        System.out.println();
     }
 }

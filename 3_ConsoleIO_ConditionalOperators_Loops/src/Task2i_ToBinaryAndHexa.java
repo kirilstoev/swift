@@ -15,8 +15,9 @@ public class Task2i_ToBinaryAndHexa {
             number /= 2;
         } while (number > 0);
         do {
-            if (hexnum % 16 > 9) {
-                switch (hexnum % 16) {
+        int hexRemain=hexnum%16;
+            if (hexRemain > 9) {
+                switch (hexRemain) {
                     case 10:
                         convert = "A";
                         break;
@@ -39,7 +40,7 @@ public class Task2i_ToBinaryAndHexa {
                 hexOut = convert + hexOut;
                 hexnum /= 16;
             } else {
-                hexOut = hexnum % 16 + hexOut;
+                hexOut = hexRemain + hexOut;
                 hexnum /= 16;
             }
         } while (hexnum > 0);
