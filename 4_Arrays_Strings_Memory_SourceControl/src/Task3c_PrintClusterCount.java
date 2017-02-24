@@ -8,7 +8,7 @@ public class Task3c_PrintClusterCount {
         int num = sc.nextInt();
         int count = 0;
         boolean countSet = false;
-        int prevNumber = 0;
+        int prevNumber = Integer.MIN_VALUE;
         int arr[] = new int[num];
         for (int i = 0; i < num; i++) {
             arr[i] = sc.nextInt();

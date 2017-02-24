@@ -7,10 +7,11 @@ public class Task2a_PrintMatrix {
         Scanner sc = new Scanner(System.in);
         int num = sc.nextInt();
         int[][] arr = new int[num][num];
+        int seq = 1;
         for (int i = 0; i < num; i++) {
             for (int l = 0; l < num; l++) {
-                int number = sc.nextInt();
-                arr[i][l] = number;
+                arr[i][l] = seq;
+                seq++;
             }
         }
         for (int row = 0; row < arr.length; row++) {

@@ -9,21 +9,7 @@ public class Task1e_Print2dArray {
             {13, 14, 15, 16},};
         for (int row = 0; row < arr.length; row++) {
             for (int col = 0; col < arr.length; col++) {
-                System.out.printf("%4d", arr[col][row]);
-            }
-            System.out.println();
-        }
-        
-                
-        for (int row = 0; row < arr.length; row++) {
-            if (row % 2 == 0) {
-                for (int col = 0; col < arr.length; col++) {
-                    System.out.printf("%4d", arr[col][row]);
-                }
-            } else {
-                for (int col = arr.length-1; col >= 0; col--) {
-                    System.out.printf("%4d", arr[col][row]);
-                }
+                System.out.printf("%4d", arr[row][col]);
             }
             System.out.println();
         }

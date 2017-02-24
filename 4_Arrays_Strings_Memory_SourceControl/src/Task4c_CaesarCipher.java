@@ -12,9 +12,9 @@ public class Task4c_CaesarCipher {
             for (int i = 0; i < arr.length; i++) {
                 if (arr[i] >='a' && arr[i] <='z' || arr[i] >='A' && arr[i] <='Z') {
                     if (arr[i] == 'z') {
-                        arr[i] = 97;
+                        arr[i] = 'a';
                     } else if (arr[i] == 'Z') {
-                        arr[i] = 65;
+                        arr[i] = 'A';
                     } else {
                         arr[i] += 1;
                     }
@@ -25,9 +25,9 @@ public class Task4c_CaesarCipher {
             for (int i = 0; i < arr.length; i++) {
                 if (arr[i] >='a' && arr[i] <='z' || arr[i] >='A' && arr[i] <='Z') {
                     if (arr[i] == 'a') {
-                        arr[i] = 122;
+                        arr[i] = 'z';
                     } else if (arr[i] == 'A') {
-                        arr[i] = 90;
+                        arr[i] = 'Z';
                     } else {
                         arr[i] -= 1;
                     }
