@@ -1,44 +1,54 @@
 
 public class Car {
 
-    String brand;
-    String model;
-    int year;
-    int yearsOld;
-    int power;
-    int tax;
+    private String brand;
+    private String model;
+    private int year;
+    private int yearIdx;
+    private int power;
+    private float tax;
 
-    int insuranceCategory(int year) {
-        if (2017 - year < 8) {
-            this.yearsOld = 1;
-        } else if (2017 - year < 15) {
-            this.yearsOld = 2;
-        } else if (2017 - year < 25) {
-            this.yearsOld = 3;
-        } else {
-            this.yearsOld = 4;
-        }
-        return yearsOld;
+    Car(String brand, String model, int year, int power) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+        this.power = power;
     }
 
-    int taxCar(int year) {
-        switch (yearsOld) {
+    int insuranceCategory(int year) {
+        if (2017 - year <= 8) {
+            this.yearIdx = 1;
+        } else if (2017 - year <= 15) {
+            this.yearIdx = 2;
+        } else if (2017 - year <= 25) {
+            this.yearIdx = 3;
+        } else {
+            this.yearIdx = 4;
+        }
+        return this.yearIdx;
+    }
+
+    float taxCar(int year) {
+        switch (yearIdx) {
             case 1:
                 this.tax = 150;
+                break;
             case 2:
                 this.tax = 200;
+                break;
             case 3:
                 this.tax = 300;
+                break;
             case 4:
                 this.tax = 500;
+                break;
         }
-
         if (power < 80) {
             tax += tax * 0.2;
         } else if (power > 140) {
             tax += tax * 4.5 / 10;
         }
-        return tax;
+        return this.tax;
     }
 
     void setBrand(String brand) {
@@ -57,14 +67,14 @@ public class Car {
         this.power = power;
     }
 
-    void setYearsOld(int yearsOld) {
-        this.yearsOld = yearsOld;
+    void setYearsOld(int yearIdx) {
+        this.yearIdx = yearIdx;
     }
 
     void setTax(int tax) {
         this.tax = tax;
     }
-    
+
     public String getBrand() {
         return brand;
     }
@@ -82,10 +92,10 @@ public class Car {
     }
 
     public int getYearsOld() {
-        return yearsOld;
+        return yearIdx;
     }
 
-    public int getTax() {
+    public float getTax() {
         return tax;
     }
 }

@@ -1,5 +1,4 @@
 
-
 public class Task2_Classes {
 
     public static void main(String[] args) {
@@ -42,13 +41,13 @@ public class Task2_Classes {
         kiril.getName();
         georgi.getName();
 
-        int kAge=0;
-        int gAge=0;
+        int kAge = 0;
+        int gAge = 0;
         kiril.gettAge();
         georgi.gettAge();
 
         kiril.printMsg();
-        
+
         System.out.println(kiril.getDescription());
     }
 
