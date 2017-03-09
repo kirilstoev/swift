@@ -21,10 +21,10 @@ public class Task4_EmployeeSalarySort {
                 case 5:
                     if (newPerson[4].chars().allMatch( Character::isDigit )) {
                         employees[i] = new Employee(newPerson[0], Double.parseDouble(newPerson[1]), newPerson[2], newPerson[3], Integer.parseInt(newPerson[4]));
-                        break;
                     } else {
                         employees[i] = new Employee(newPerson[0], Double.parseDouble(newPerson[1]), newPerson[2], newPerson[3], newPerson[4]);
                     }
+                    break;
                 case 4:
                     employees[i] = new Employee(newPerson[0], Double.parseDouble(newPerson[1]), newPerson[2], newPerson[3]);
                     break;
