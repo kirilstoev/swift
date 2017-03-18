@@ -86,7 +86,6 @@ public class Task3_FileManagement {
                                 DocumentContentFile documentContent = (DocumentContentFile) files[i];
                                 documentContent.Execute();
                             } else if (files[i] instanceof ExecutableFile) {
-                                String result = "";
                                 ExecutableFile executableContent = (ExecutableFile) files[i];
                                 files[i].Execute();
                                 for (int j = 0; j < executableContent.count; j++) {
@@ -95,9 +94,25 @@ public class Task3_FileManagement {
                                             if (files[k] instanceof MediaContentFile) {
                                                 MediaContentFile mediaContent = (MediaContentFile) files[k];
                                                 mediaContent.Execute();
-                                            } else if (files[i] instanceof DocumentContentFile) {
-                                                DocumentContentFile documentContent = (DocumentContentFile) files[i];
+                                            } else if (files[k] instanceof DocumentContentFile) {
+                                                DocumentContentFile documentContent = (DocumentContentFile) files[k];
                                                 documentContent.Execute();
+                                            } else if (files[k] instanceof ExecutableFile) {
+                                                ExecutableFile execContent = (ExecutableFile) files[k];
+                                                files[k].Execute();
+                                                for (int l = 0; l < execContent.count; l++) {
+                                                    for (int m = 0; m < makeCount; m++) {
+                                                        if (files[m].name.equals(execContent.requiredResources[l])) {
+                                                            if (files[m] instanceof MediaContentFile) {
+                                                                MediaContentFile mediaContent = (MediaContentFile) files[m];
+                                                                mediaContent.Execute();
+                                                            } else if (files[m] instanceof DocumentContentFile) {
+                                                                DocumentContentFile documentContent = (DocumentContentFile) files[m];
+                                                                documentContent.Execute();
+                                                            }
+                                                        }
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -106,6 +121,7 @@ public class Task3_FileManagement {
                         }
                     }
                     break;
+
                 case "INFO":
                     for (int i = 0; i < makeCount; i++) {
                         if (files[i].name.equals(splitRow[1])) {
