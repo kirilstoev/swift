@@ -1,0 +1,111 @@
+package PersonCharacteristics;
+
+import education.SecondaryEducation;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import static java.time.temporal.ChronoUnit.DAYS;
+import java.util.Scanner;
+import education.*;
+
+public class Task4_PersonCharacteristics {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+        String scanNull = sc.nextLine();
+        DateTimeFormatter format;
+        Person[] newPerson = new Person[num];
+        for (int i = 0; i < num; i++) {
+            String scan = sc.nextLine();
+            String[] person = scan.split("\\s*;\\s*");
+            String[] bornDate = person[4].split("\\.");
+            int bornDay = Integer.parseInt(bornDate[0]);
+            int bornMonth = Integer.parseInt(bornDate[1]);
+            int bornYear = Integer.parseInt(bornDate[2]);
+            String[] startEducDate = person[7].split("\\.");
+            int startEducDay = Integer.parseInt(startEducDate[0]);
+            int startEducMonth = Integer.parseInt(startEducDate[1]);
+            int startEducYear = Integer.parseInt(startEducDate[2]);
+            String[] endEducDate = person[8].split("\\.");
+            int endEducDay = Integer.parseInt(endEducDate[0]);
+            int endEducMonth = Integer.parseInt(endEducDate[1]);
+            int endEducYear = Integer.parseInt(endEducDate[2]);
+            if (person.length == 9) {
+                switch (person[5]) {
+                    case "P":
+                        newPerson[i] = new Person(person[0], person[1], person[2].charAt(0), Integer.parseInt(person[3]), LocalDate.of(bornYear, bornMonth, bornDay), new PrimaryEducation(person[6], LocalDate.of(startEducYear, startEducMonth, startEducDay), LocalDate.of(endEducYear, endEducMonth, endEducDay), 0));
+                        break;
+                    case "S":
+                        newPerson[i] = new Person(person[0], person[1], person[2].charAt(0), Integer.parseInt(person[3]), LocalDate.of(bornYear, bornMonth, bornDay), new SecondaryEducation(person[6], LocalDate.of(startEducYear, startEducMonth, startEducDay), LocalDate.of(endEducYear, endEducMonth, endEducDay), 0));
+                        break;
+                    default:
+                        newPerson[i] = new Person(person[0], person[1], person[2].charAt(0), Integer.parseInt(person[3]), LocalDate.of(bornYear, bornMonth, bornDay), new HigherEducation(person[5], person[6], LocalDate.of(startEducYear, startEducMonth, startEducDay), LocalDate.of(endEducYear, endEducMonth, endEducDay), 0));
+                        break;
+                }
+            } else {
+                switch (person[5]) {
+                    case "P":
+                        newPerson[i] = new Person(person[0], person[1], person[2].charAt(0), Integer.parseInt(person[3]), LocalDate.of(bornYear, bornMonth, bornDay), new PrimaryEducation(person[6], LocalDate.of(startEducYear, startEducMonth, startEducDay), LocalDate.of(endEducYear, endEducMonth, endEducDay), Float.parseFloat(person[9])));
+                        break;
+                    case "S":
+                        newPerson[i] = new Person(person[0], person[1], person[2].charAt(0), Integer.parseInt(person[3]), LocalDate.of(bornYear, bornMonth, bornDay), new SecondaryEducation(person[6], LocalDate.of(startEducYear, startEducMonth, startEducDay), LocalDate.of(endEducYear, endEducMonth, endEducDay), Float.parseFloat(person[9])));
+                        break;
+                    default:
+                        newPerson[i] = new Person(person[0], person[1], person[2].charAt(0), Integer.parseInt(person[3]), LocalDate.of(bornYear, bornMonth, bornDay), new HigherEducation(person[5], person[6], LocalDate.of(startEducYear, startEducMonth, startEducDay), LocalDate.of(endEducYear, endEducMonth, endEducDay), Float.parseFloat(person[9])));
+                        break;
+                }
+            }
+
+            format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+            if (newPerson[i].getGender() == 'M') {
+                if (newPerson[i].getAge() >= 18) {
+                    if (DAYS.between(LocalDate.of(endEducYear, endEducMonth, endEducDay), LocalDate.now()) >= 0) {
+                        System.out.format("%s %s is %d years old. He was born in %s. He started %s in %s on %s and finished on %s with a grade of %f.%n", newPerson[i].getFirstName(), newPerson[i].getSurName(), newPerson[i].getAge(), newPerson[i].getBornYear().format(format), getFinalDegrees(newPerson[i].education),newPerson[i].education.getInstitutionName(), newPerson[i].education.getEnrollmentDate().format(format), newPerson[i].education.getGraduationDate().format(format), getFinalGrades(newPerson[i].education));
+                        
+                    } else {
+                        System.out.format("%s %s is %d years old. He was born in %s. He started %s in %s on %s and is supposed to graduate on %s.%n", newPerson[i].getFirstName(), newPerson[i].getSurName(), newPerson[i].getAge(), newPerson[i].getBornYear().format(format),getFinalDegrees(newPerson[i].education),newPerson[i].education.getInstitutionName(), newPerson[i].education.getEnrollmentDate().format(format), newPerson[i].education.getGraduationDate().format(format));
+                    }
+                } else {
+                    System.out.format("%s %s is %d years old. He was born in %s. He started %s in %s on %s and is supposed to graduate on %s. %s %s is under-aged.%n", newPerson[i].getFirstName(), newPerson[i].getSurName(), newPerson[i].getAge(), newPerson[i].getBornYear().format(format),getFinalDegrees(newPerson[i].education), newPerson[i].education.getInstitutionName(), newPerson[i].education.getEnrollmentDate().format(format), newPerson[i].education.getGraduationDate().format(format), newPerson[i].getFirstName(), newPerson[i].getSurName());
+                }
+            } else {
+                if (newPerson[i].getAge() >= 18) {
+                    if (DAYS.between(LocalDate.of(endEducYear, endEducMonth, endEducDay), LocalDate.now()) >= 0) {
+                        System.out.format("%s %s is %d years old. She was born in %s. She started %s in %s on %s and finished on %s with a grade of %f.%n", newPerson[i].getFirstName(), newPerson[i].getSurName(), newPerson[i].getAge(), newPerson[i].getBornYear().format(format),getFinalDegrees(newPerson[i].education), newPerson[i].education.getInstitutionName(), newPerson[i].education.getEnrollmentDate().format(format), newPerson[i].education.getGraduationDate().format(format), getFinalGrades(newPerson[i].education));
+                    } else {
+                        System.out.format("%s %s is %d years old. She was born in %s. She started %s in %s on %s and is supposed to graduate on %s.%n", newPerson[i].getFirstName(), newPerson[i].getSurName(), newPerson[i].getAge(), newPerson[i].getBornYear().format(format),getFinalDegrees(newPerson[i].education), newPerson[i].education.getInstitutionName(), newPerson[i].education.getEnrollmentDate().format(format), newPerson[i].education.getGraduationDate().format(format));
+                    }
+                } else {
+                    System.out.format("%s %s is %d years old. She was born in %s. She started %s in %s on %s and is supposed to graduate on %s. %s %s is under-aged.%n", newPerson[i].getFirstName(), newPerson[i].getSurName(), newPerson[i].getAge(), newPerson[i].getBornYear().format(format),getFinalDegrees(newPerson[i].education), newPerson[i].education.getInstitutionName(), newPerson[i].education.getEnrollmentDate().format(format), newPerson[i].education.getGraduationDate().format(format), newPerson[i].getFirstName(), newPerson[i].getSurName());
+                }
+            }
+        }
+    }
+
+    private static float getFinalGrades(Education person) {
+
+        if (person instanceof PrimaryEducation) {
+            PrimaryEducation primary = (PrimaryEducation) person;
+            return primary.getFinalGrade();
+        } else if (person instanceof SecondaryEducation) {
+            SecondaryEducation secondary = (SecondaryEducation) person;
+            return secondary.getFinalGrade();
+        } else {
+            HigherEducation higher = (HigherEducation) person;
+            return higher.getFinalGrade();
+        }
+    }
+
+    private static String getFinalDegrees(Education person) {
+
+        if (person instanceof PrimaryEducation) {
+            return "primary degree";
+        } else if (person instanceof SecondaryEducation) {
+            return "secondary degree";
+        } else {
+            HigherEducation higher = (HigherEducation) person;
+            return higher.getDegree()+" degree";
+        }
+    }
+}
